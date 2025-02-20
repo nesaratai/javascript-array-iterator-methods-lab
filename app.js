@@ -110,10 +110,12 @@ const inventors = [
     the years 1500 and 1599.
   */
   
-  let veryOldInventors = [];
   
   // Complete the exercise in the space below:
-  
+  const veryOldInventors = inventors.filter((invnetor1) => {
+    return invnetor1.year <= '1599' && invnetor1.year >= 1500
+  });
+
   // Check your work:
   console.log('Exercise 1 my result: ', veryOldInventors);
   console.log('Exercise 1 correct result: ', [
@@ -141,9 +143,11 @@ Hint: Return a new object literal from the callback that looks like:
       { first: "First Name", last: "Last Name" }
 */
 
-let inventorNames = [];
 
 // Complete the exercise in the space below:
+const inventorNames = inventors.map((inventorname) => {
+  return 'First: ' + inventorname.first +', '+ 'Last: ' + inventorname.last
+});
 
 // Check your work:
 console.log('Exercise 2 my result: ', inventorNames);
@@ -173,9 +177,8 @@ Sort the inventors by birth date in ascending order (from those born furthest in
 the past to those born most recently).
 */
 
-let sortedByBirthYear = [];
-
 // Complete the exercise in the space below:
+const sortedByBirthYear = inventors.sort((a, b) => a.year - b.year)
 
 // Check your work:
 console.log('Exercise 3 my result: ', sortedByBirthYear);
@@ -212,10 +215,12 @@ from an array of inventor objects
 - Assign the found inventor object to the variable inventorNamedAda
 */
 
-let inventorNamedAda = {};
+//let inventorNamedAda = {};
 
 // Complete the exercise in the space below:
-
+const inventorNamedAda = inventors.find((ada) => {
+  return ada.first === 'Ada'
+})
 // Check your work:
 console.log('Exercise 4 my result: ', inventorNamedAda);
 console.log('Exercise 4 correct result: ', {
@@ -240,9 +245,12 @@ Hint: Use the String.prototype.split() method to separate the first and last
       After splitting the names, rearrange them to the "First Last" format.
 */
 
-let firstLast = [];
-
+//let firstLast = [];
 // Complete the exercise in the space below:
+const firstLast = people.map((firstlast) => {
+  const [lastName, firstName]= firstlast.split(', ')
+  return `${firstName} ${lastName}`
+});
 
 // Check your work:
 console.log('Exercise 5 my result: ', firstLast);
@@ -306,10 +314,12 @@ old or older.
 - Store the result (true or false) in the variable 'isAdultPresent'. 
 */
 
-let isAdultPresent = null;
+//let isAdultPresent = null;
 
 // Complete the exercise in the space below:
-
+const isAdultPresent = devs.some((adult) =>{
+  return adult.year < 2007
+});
 // Check your work:
 console.log('Exercise 6 my result: ', isAdultPresent);
 console.log('Exercise 6 correct result: ', true);
@@ -331,10 +341,12 @@ Use Array.prototype.every() to determine if every person in the devs array is
 - Store the result (true or false) in the variable 'isEveryone19OrOlder'.
 */
 
-let isEveryone19OrOlder = null;
+//let isEveryone19OrOlder = null;
 
 // Complete the exercise in the space below:
-
+const isEveryone19OrOlder = devs.every((older) =>{
+  return older.year < 2007
+})
 // Check your work:
 console.log('Exercise 7 my result: ', isEveryone19OrOlder);
 console.log('Exercise 7 correct result: ', false);
@@ -353,9 +365,12 @@ a specific ID 823423 from an array of comment objects.
 - Assign the found comment object to the variable 'commentById'.
 */
 
-let commentById = {};
+//let commentById = {};
 
 // Complete the exercise in the space below:
+const commentById = comments.find((byid) =>{
+  return byid.id === 823423
+});
 
 // Check your work:
 console.log('Exercise 8 my result: ', commentById);
@@ -374,10 +389,12 @@ of comment objects.
 - Store the index in the variable 'idx'.
 */
 
-let idx = null;
+//let idx = null;
 
 // Complete the exercise in the space below:
-
+const idx = comments.findIndex((idxs)=>{
+  return idxs.id === 123523
+})
 // Check your work:
 console.log('Exercise 9 my result: ', idx);
 console.log('Exercise 9 correct result: ', 3);
@@ -408,7 +425,11 @@ Hints:
   accumulator.
 */
 
-let totalYearsLived = 0;
+let totalYearsLived = inventors.reduce(function(acc, inventor){
+const totalYears = inventor.passed - inventor.year;
+return acc + totalYears;
+},0);
+
 
 // Complete the exercise in the space below:
 
@@ -440,7 +461,13 @@ Hints:
   initial value of the "accumulator".
 */
 
-let travelMethodCounts = {};
+let travelMethodCounts = travelMethods.reduce(function(acc, cars){
+  if(acc[cars]){
+    acc[cars] = acc[cars]+1;
+  } else{
+    acc[cars] = 1; 
+  } return acc
+  },{});
 
 // Complete the exercise in the space below:
 
